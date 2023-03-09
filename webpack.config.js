@@ -41,13 +41,3 @@ module.exports = {
     }),
   ],
 };
-
-//This tells webpack to use babel-loader to transpile your JavaScript code.
-//The module key is an object that specifies how to handle different
-//types of modules. The rules array contains an object that
-//specifies how to handle .js files. The test property specifies
-//a regular expression that matches .js files, the exclude property
-//specifies a regular expression that excludes the node_modules
-//directory, and the use property specifies that we want to use
-// babel-loader with the @babel/preset-env and @babel/preset-react
-// presets.

@@ -21,35 +21,6 @@ function Form({ onAdd }) {
     console.log("newTodo", newTodo);
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   addTodo();
-  // };
-
-  // const addTodo = async () => {
-  //   const currentTime = new Date().toISOString();
-
-  //   try {
-  //     const response = await fetch("http://localhost:3000/api/todos", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         created_on: currentTime,
-  //         description: inputValue,
-  //         isCompleted: false,
-  //       }),
-  //     });
-
-  //     const createdTodo = await response.json();
-  //     setInputValue("");
-  //     console.log(createdTodo);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   return (
     <form onSubmit={handleSubmit}>
       <div className="InputSubmitDiv">

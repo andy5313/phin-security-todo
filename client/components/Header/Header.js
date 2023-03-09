@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.scss";
 
-function Header() {
+function Header({ setViewDate, viewDate }) {
   return (
     <div className="HeaderDiv">
       <h1>Todo List!</h1>

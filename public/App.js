@@ -8,8 +8,11 @@ const App = () => {
   const [todos, setTodos] = useState(null);
   const [viewDate, setViewDate] = useState(false);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const fetchData = async () => {
-    console.log("fetching");
     const response = await fetch("http://localhost:3000/api/todos");
     const json = await response.json();
     setTodos(json);
@@ -28,7 +31,6 @@ const App = () => {
       });
 
       const createdTodo = await response.json();
-      //setTodos([...todos, createdTodo]);
       setTodos((prevTodos) => [...prevTodos, createdTodo]);
       console.log("todos", todos);
     } catch (error) {
@@ -44,7 +46,6 @@ const App = () => {
         if (!response.ok) {
           throw new Error("Failed to delete todo item");
         }
-        // remove the deleted todo item from the list
         setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
       })
       .catch((error) => {
@@ -64,7 +65,6 @@ const App = () => {
         if (!response.ok) {
           throw new Error("Failed to update todo item");
         }
-        // replace the updated todo item in the list
         setTodos((prevTodos) => {
           const index = prevTodos.findIndex((t) => t.id === todo.id);
           const updatedTodos = [...prevTodos];
@@ -93,7 +93,6 @@ const App = () => {
         if (!response.ok) {
           throw new Error("Failed to update todo item");
         }
-        // replace the updated todo item in the list
         setTodos((prevTodos) => {
           const index = prevTodos.findIndex((t) => t.id === todo.id);
           const updatedTodos = [...prevTodos];
@@ -134,10 +133,6 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   if (!todos) {
     console.log(todos);
     return <div>Loading...</div>;
@@ -147,7 +142,7 @@ const App = () => {
     <div className="TodoContainer">
       <div className="TodoListContainer">
         <Form onAdd={addTodo}></Form>
-        <Header></Header>
+        <Header setViewDate={setViewDate} viewDate={viewDate}></Header>
         <ul>{displayList()}</ul>
       </div>
     </div>
