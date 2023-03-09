@@ -39,6 +39,16 @@ background-color: #4CAF50; /* Green background */
     gap: .4vw;
 }
 
+.HideBtn {
+    background-color: rgb(122, 166, 243);
+    color: white;
+    border: none;
+    padding: 0 1vw;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 p {
     font-size: 1vw;
 }

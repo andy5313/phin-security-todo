@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "./TodoItem.scss";
 
-function TodoItem({ todo, onEdit, onDelete, onToggleComplete, viewDate }) {
+function TodoItem({
+  todo,
+  onEdit,
+  onDelete,
+  onToggleComplete,
+  viewDate,
+  onHide,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedTodo, setUpdatedTodo] = useState(todo);
 
@@ -55,7 +62,7 @@ function TodoItem({ todo, onEdit, onDelete, onToggleComplete, viewDate }) {
               type="checkbox"
               id="checkbox"
               name="checkbox"
-              checked={todo.isCompleted}
+              defaultChecked={todo.isCompleted}
               onClick={() => onToggleComplete(todo)}
             />
 
@@ -69,6 +76,11 @@ function TodoItem({ todo, onEdit, onDelete, onToggleComplete, viewDate }) {
           </div>
 
           <div className="BtnDiv">
+            {todo.isCompleted && (
+              <button className="HideBtn" onClick={() => onHide(todo.id)}>
+                Hide
+              </button>
+            )}
             <button className="EditBtn" onClick={handleEditClick}>
               Edit
             </button>

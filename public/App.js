@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Form from "../client/components/Form/Form";
 import TodoItem from "../client/components/TodoItem/TodoItem";
 import "./App.scss";
+import Header from "../client/components/Header/Header";
 
 const App = () => {
   const [todos, setTodos] = useState(null);
@@ -14,28 +15,26 @@ const App = () => {
     setTodos(json);
   };
 
-  // const addTodo = async (todo) => {
-  //   const currentTime = new Date().toISOString();
+  const addTodo = async (todo) => {
+    const currentTime = new Date().toISOString();
 
-  //   try {
-  //     const response = await fetch("http://localhost:3000/api/todos", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(todo),
-  //     });
+    try {
+      const response = await fetch("http://localhost:3000/api/todos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(todo),
+      });
 
-  //     const createdTodo = await response.json();
-  //     setTodos({
-  //       ...todos,
-  //       createdTodo,
-  //     });
-  //     console.log(todos);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+      const createdTodo = await response.json();
+      //setTodos([...todos, createdTodo]);
+      setTodos((prevTodos) => [...prevTodos, createdTodo]);
+      console.log("todos", todos);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const deleteTodoItem = (id) => {
     fetch(`/api/todos/${id}`, {
@@ -111,6 +110,10 @@ const App = () => {
       });
   };
 
+  const hideItem = (id) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
+
   const displayList = () => {
     if (todos) {
       return todos.map((todo) => {
@@ -122,6 +125,7 @@ const App = () => {
             onDelete={deleteTodoItem}
             onToggleComplete={updateCompletedTodo}
             viewDate={viewDate}
+            onHide={hideItem}
           >
             {todo.description}
           </TodoItem>
@@ -142,16 +146,8 @@ const App = () => {
   return (
     <div className="TodoContainer">
       <div className="TodoListContainer">
-        <Form></Form>
-        <h1>Todo List!</h1>
-        <button
-          onClick={() => {
-            console.log(viewDate);
-            setViewDate(!viewDate);
-          }}
-        >
-          View Date
-        </button>
+        <Form onAdd={addTodo}></Form>
+        <Header></Header>
         <ul>{displayList()}</ul>
       </div>
     </div>
