@@ -24,7 +24,11 @@ app.get("/", (req, res) => {
 
 app.get("/api/todos", async (req, res) => {
   try {
-    const snapshot = await admin.firestore().collection("todo").get();
+    const snapshot = await admin
+      .firestore()
+      .collection("todo")
+      .orderBy("created_on")
+      .get();
     const todos = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),

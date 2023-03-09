@@ -1,0 +1,50 @@
+.ListItemContainer {
+    display: flex;
+    gap: 1vw;
+    padding: .5vh;
+    width: 35vw;
+    justify-content: space-between;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.EditBtn, .SaveBtn {
+background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  border: none; /* No border */
+  padding: 0 1vw; /* Padding */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 5px;
+}
+
+.DeleteBtn, .CancelBtn {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 0 1vw; /* Padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 5px;
+}
+
+.BtnDiv {
+    display: flex;
+    gap: .4vw;
+}
+
+p {
+    font-size: 1vw;
+}
+
+.DescriptionDiv{
+    display: flex;
+    gap: .5vw;
+}
+
