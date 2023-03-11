@@ -1,4 +1,4 @@
-# To-do List using Firebase Storage!
+# To-do List using Firebase Storage
 
 In the project directory, you can run:
 
